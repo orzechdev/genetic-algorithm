@@ -15,7 +15,7 @@ def main():
     print(positive_points)
     plt.plot(negative_points[0], negative_points[1], 'r.')
     plt.plot(positive_points[0], positive_points[1], 'b.')
-    plt.axis([0, 100, 0, 100])
+    plt.axis([-10, 20, -10, 20])
 
     start(negative_points, positive_points)
     plt.show()
@@ -24,10 +24,10 @@ def main():
 
 def generate_and_save_points():
     # random_points = np.random.randint(100, size=(2, 1000))
-    random_points_negative_x = np.random.normal(70, 10, 500)
-    random_points_negative_y = np.random.normal(20, 10, 500)
-    random_points_positive_x = np.random.normal(20, 10, 500)
-    random_points_positive_y = np.random.normal(80, 10, 500)
+    random_points_negative_x = np.random.normal(9, 2, 70)
+    random_points_negative_y = np.random.normal(1, 2, 70)
+    random_points_positive_x = np.random.normal(0, 2, 70)
+    random_points_positive_y = np.random.normal(8, 2, 70)
 
     random_points_negative = np.concatenate(([random_points_negative_x], [random_points_negative_y]))
     random_points_positive = np.concatenate(([random_points_positive_x], [random_points_positive_y]))
