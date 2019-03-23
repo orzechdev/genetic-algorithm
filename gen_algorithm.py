@@ -1,12 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from utils import print_title, plot_polynomial, random_one, unpack_bits
+from utils import print_title, plot_polynomial, random_one, unpack_bits, mutate_bits
 
 
 def start(negative_points, positive_points):
+    param_population_size = 2000
+    param_crossover_probability = 0.4
+    param_mutation_probability = 0.02
+    param_generation_number = 20
+
     print_title('GA: start - polynomial degree 2')
     print_title('GA: initialise population of functions arguments')
-    args_population = initialise(args_population_size=2000)
+    args_population = initialise(args_population_size=param_population_size)
     print(args_population)
     print_title('GA: evaluate negative and positive points groups')
     args_population_fitness_values = evaluate(args_population, negative_points, positive_points)
@@ -16,14 +21,16 @@ def start(negative_points, positive_points):
 
     print(args_population_selected)
     print_title('GA: crossover')
-    args_population_crossovered = crossover(args_population, args_population_selected)
-    print(args_population_crossovered)
+    args_population_crossovered = crossover(args_population, args_population_selected, param_crossover_probability)
+    args_population_mutated = mutation(args_population_crossovered, param_mutation_probability)
+    print(args_population_mutated)
 
-    for i in range(20):
-        args_population_fitness_values = evaluate(args_population_crossovered, negative_points, positive_points)
-        args_population_selected = selection_sort(args_population_crossovered, args_population_fitness_values)
+    for i in range(param_generation_number - 1):
+        args_population_fitness_values = evaluate(args_population_mutated, negative_points, positive_points)
+        args_population_selected = selection_sort(args_population_mutated, args_population_fitness_values)
 
-        args_population_crossovered = crossover(args_population, args_population_selected)
+        args_population_crossovered = crossover(args_population, args_population_selected, param_crossover_probability)
+        args_population_mutated = mutation(args_population_crossovered, param_mutation_probability)
         print(i, end=' ')
 
     a = args_population_selected[0, 0]
@@ -32,7 +39,7 @@ def start(negative_points, positive_points):
     plot_polynomial(a, b, c)
 
     print('\n')
-    print(args_population_crossovered)
+    print(args_population_mutated)
 
 
 def initialise(args_population_size):
@@ -89,10 +96,9 @@ def selection_sort(args_pop, args_pop_fitness_values):
     return args_pop_selected
 
 
-def crossover(args_pop, args_pop_selected):
-    crossover_probability = 0.4
-    crossover_point = np.uint8(1/2)
+def crossover(args_pop, args_pop_selected, crossover_probability):
     args_pop_crossovered = np.zeros((3, args_pop.shape[1]))
+    # crossover_point = np.uint8(1/2)
     # args_pop_selected_bits = np.empty((3, args_pop.shape[1], 8), dtype=np.uint8)
     # args_pop_selected_bits[0] = unpack_bits(args_pop_selected[0], 8)
     # args_pop_selected_bits[1] = unpack_bits(args_pop_selected[1], 8)
@@ -101,28 +107,41 @@ def crossover(args_pop, args_pop_selected):
 
     crossovered_pop_size = 0
 
-    for i in range(0, args_pop.shape[1]):
-        for j in range(0, args_pop.shape[1]):
-            if random_one(crossover_probability):
-                a_i_bits = np.binary_repr(int(args_pop_selected[0, i]*100))
-                a_j_bits = np.binary_repr(int(args_pop_selected[0, j]*100))
-                args_pop_crossovered[0, i] = int(a_i_bits[:len(a_i_bits)-1] + a_j_bits[len(a_j_bits)-1:], 2)/100
-                b_i_bits = np.binary_repr(int(args_pop_selected[1, i]*100))
-                b_j_bits = np.binary_repr(int(args_pop_selected[1, j]*100))
-                args_pop_crossovered[1, i] = int(b_i_bits[:len(b_i_bits)-1] + b_j_bits[len(b_j_bits)-1:], 2)/100
-                c_i_bits = np.binary_repr(int(args_pop_selected[2, i]*100))
-                c_j_bits = np.binary_repr(int(args_pop_selected[2, j]*100))
-                args_pop_crossovered[2, i] = int(c_j_bits[:len(c_i_bits)-1] + c_j_bits[len(c_j_bits)-1:], 2)/100
-                crossovered_pop_size += 1
-                break
+    while crossovered_pop_size < args_pop.shape[1]:
+        for i in range(0, args_pop.shape[1]):
+            for j in range(0, args_pop.shape[1]):
+                if random_one(crossover_probability):
+                    a_i_bits = np.binary_repr(int(args_pop_selected[0, i]*100))
+                    a_j_bits = np.binary_repr(int(args_pop_selected[0, j]*100))
+                    args_pop_crossovered[0, i] = int(a_i_bits[:len(a_i_bits)-1] + a_j_bits[len(a_j_bits)-1:], 2)/100
+                    b_i_bits = np.binary_repr(int(args_pop_selected[1, i]*100))
+                    b_j_bits = np.binary_repr(int(args_pop_selected[1, j]*100))
+                    args_pop_crossovered[1, i] = int(b_i_bits[:len(b_i_bits)-1] + b_j_bits[len(b_j_bits)-1:], 2)/100
+                    c_i_bits = np.binary_repr(int(args_pop_selected[2, i]*100))
+                    c_j_bits = np.binary_repr(int(args_pop_selected[2, j]*100))
+                    args_pop_crossovered[2, i] = int(c_j_bits[:len(c_i_bits)-1] + c_j_bits[len(c_j_bits)-1:], 2)/100
+                    crossovered_pop_size += 1
+                    break
+                if crossovered_pop_size >= args_pop.shape[1]:
+                    break
             if crossovered_pop_size >= args_pop.shape[1]:
                 break
-        if crossovered_pop_size >= args_pop.shape[1]:
-            break
 
     return args_pop_crossovered
 
 
-def mutation():
-    pass
+def mutation(args_pop, mutation_probability):
+    args_pop_mutated = np.zeros((3, args_pop.shape[1]))
 
+    for i in range(0, args_pop.shape[1]):
+        a_i_bits = np.binary_repr(int(args_pop[0, i] * 100))
+        a_i_bits_mutated = mutate_bits(a_i_bits, mutation_probability)
+        args_pop_mutated[0, i] = int(a_i_bits_mutated, 2) / 100
+        b_i_bits = np.binary_repr(int(args_pop[1, i] * 100))
+        b_i_bits_mutated = mutate_bits(b_i_bits, mutation_probability)
+        args_pop_mutated[1, i] = int(b_i_bits_mutated, 2) / 100
+        c_i_bits = np.binary_repr(int(args_pop[2, i] * 100))
+        c_i_bits_mutated = mutate_bits(c_i_bits, mutation_probability)
+        args_pop_mutated[2, i] = int(c_i_bits_mutated, 2) / 100
+
+    return args_pop_mutated

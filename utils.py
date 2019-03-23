@@ -29,3 +29,16 @@ def unpack_bits(x, num_bits):
     x = x.reshape([-1, 1])
     to_and = 2**np.arange(num_bits).reshape([1, num_bits])
     return (x & to_and).astype(bool).astype(int).reshape(x_shape + [num_bits])
+
+
+def mutate_bits(bits_string, mutation_probability):
+    bits_string_mutated = ''
+    for c in bits_string:
+        should_mutate = random_one(mutation_probability)
+        if should_mutate and c == '1':
+            bits_string_mutated = bits_string_mutated + '0'
+        elif should_mutate and c == '0':
+            bits_string_mutated = bits_string_mutated + '1'
+        else:
+            bits_string_mutated = bits_string_mutated + c
+    return bits_string_mutated

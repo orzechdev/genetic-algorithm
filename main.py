@@ -24,10 +24,19 @@ def main():
 
 def generate_and_save_points():
     # random_points = np.random.randint(100, size=(2, 1000))
-    random_points_negative_x = np.random.normal(9, 2, 70)
-    random_points_negative_y = np.random.normal(1, 2, 70)
-    random_points_positive_x = np.random.normal(0, 2, 70)
-    random_points_positive_y = np.random.normal(8, 2, 70)
+    random_points_negative_x = np.random.normal(14, 2, 20)
+    random_points_negative_y = np.random.normal(4, 2, 20)
+    random_points_negative_x = np.append(random_points_negative_x, np.random.normal(10, 2, 20))
+    random_points_negative_y = np.append(random_points_negative_y, np.random.normal(-2, 2, 20))
+    random_points_negative_x = np.append(random_points_negative_x, np.random.normal(3, 2, 20))
+    random_points_negative_y = np.append(random_points_negative_y, np.random.normal(-4, 2, 20))
+
+    random_points_positive_x = np.random.normal(0, 2, 20)
+    random_points_positive_y = np.random.normal(14, 2, 20)
+    random_points_positive_x = np.append(random_points_positive_x, np.random.normal(2, 2, 20))
+    random_points_positive_y = np.append(random_points_positive_y, np.random.normal(12, 2, 20))
+    random_points_positive_x = np.append(random_points_positive_x, np.random.normal(4, 2, 20))
+    random_points_positive_y = np.append(random_points_positive_y, np.random.normal(14, 2, 20))
 
     random_points_negative = np.concatenate(([random_points_negative_x], [random_points_negative_y]))
     random_points_positive = np.concatenate(([random_points_positive_x], [random_points_positive_y]))
