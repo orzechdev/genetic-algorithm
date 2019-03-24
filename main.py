@@ -18,9 +18,9 @@ def main():
     plt.axis([-10, 20, -10, 20])
 
     find_polynomial(2, negative_points, positive_points)
-    find_polynomial(3, negative_points, positive_points)
-    find_polynomial(4, negative_points, positive_points)
-    find_polynomial(5, negative_points, positive_points)
+    # find_polynomial(3, negative_points, positive_points)
+    # find_polynomial(4, negative_points, positive_points)
+    # find_polynomial(5, negative_points, positive_points)
 
     plt.show()
     print_title('Genetic Algorithms end')
@@ -29,18 +29,18 @@ def main():
 def generate_and_save_points():
     # random_points = np.random.randint(100, size=(2, 1000))
     random_points_negative_x = np.random.normal(14, 2, 20)
-    random_points_negative_y = np.random.normal(4, 2, 20)
+    random_points_negative_y = np.random.normal(6, 2, 20)
     random_points_negative_x = np.append(random_points_negative_x, np.random.normal(10, 2, 20))
-    random_points_negative_y = np.append(random_points_negative_y, np.random.normal(-2, 2, 20))
+    random_points_negative_y = np.append(random_points_negative_y, np.random.normal(0, 2, 20))
     random_points_negative_x = np.append(random_points_negative_x, np.random.normal(3, 2, 20))
-    random_points_negative_y = np.append(random_points_negative_y, np.random.normal(-4, 2, 20))
+    random_points_negative_y = np.append(random_points_negative_y, np.random.normal(-2, 2, 20))
 
     random_points_positive_x = np.random.normal(0, 2, 20)
-    random_points_positive_y = np.random.normal(14, 2, 20)
-    random_points_positive_x = np.append(random_points_positive_x, np.random.normal(2, 2, 20))
-    random_points_positive_y = np.append(random_points_positive_y, np.random.normal(12, 2, 20))
-    random_points_positive_x = np.append(random_points_positive_x, np.random.normal(4, 2, 20))
-    random_points_positive_y = np.append(random_points_positive_y, np.random.normal(14, 2, 20))
+    random_points_positive_y = np.random.normal(10, 2, 20)
+    random_points_positive_x = np.append(random_points_positive_x, np.random.normal(3, 2, 20))
+    random_points_positive_y = np.append(random_points_positive_y, np.random.normal(6, 2, 20))
+    random_points_positive_x = np.append(random_points_positive_x, np.random.normal(6, 2, 20))
+    random_points_positive_y = np.append(random_points_positive_y, np.random.normal(10, 2, 20))
 
     random_points_negative = np.concatenate(([random_points_negative_x], [random_points_negative_y]))
     random_points_positive = np.concatenate(([random_points_positive_x], [random_points_positive_y]))
@@ -71,15 +71,34 @@ def find_polynomial(degree, negative_points, positive_points):
 
     print_title('Finding polynomial of degree %d started' % degree)
 
-    start(
-        negative_points,
-        positive_points,
-        y_polynomial,
-        initial_pop,
-        param_crossover_probability,
-        param_mutation_probability,
-        param_generation_number
-    )
+    # start(
+    #     negative_points,
+    #     positive_points,
+    #     y_polynomial,
+    #     initial_pop,
+    #     param_crossover_probability,
+    #     param_mutation_probability,
+    #     param_generation_number
+    # )
+
+    initial_pop = init_polynomial_pop_degree_three(100)
+    start(negative_points, positive_points, y_polynomial, initial_pop, 0.41, 0.12, 10)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.02, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.02, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.8, 0.02, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.1, 0.10, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.10, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.10, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.8, 0.10, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.1, 0.30, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.30, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.30, 100)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.8, 0.30, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.1, 0.60, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.60, 5)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.60, 100)
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.8, 0.60, 5)
+
 
     print_title('Finding polynomial of degree %d finished' % degree)
 
