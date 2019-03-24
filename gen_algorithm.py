@@ -94,14 +94,25 @@ def crossover(args_pop, args_pop_selected, crossover_probability):
             for j in range(0, args_pop.shape[1]):
                 if random_one(crossover_probability):
                     for k in range(0, args_number):
-                        if k == 0:
+                        if int(args_pop_selected[k, i]) == 0:
                             a_i_bits = np.binary_repr(int(args_pop_selected[k, i]*100))
                             a_j_bits = np.binary_repr(int(args_pop_selected[k, j]*100))
-                            args_pop_crossovered[k, i] = int(a_i_bits[:len(a_i_bits)-1] + a_j_bits[len(a_j_bits)-1:], 2)/100
+                            # print(a_i_bits + ' - ' + a_j_bits)
+                            a_i_bits_len = len(a_i_bits)
+                            a_i_bits_half = a_i_bits if a_i_bits_len == 1 else a_i_bits[:int(a_i_bits_len/2)]
+                            a_j_bits_len = len(a_j_bits)
+                            a_j_bits_half = a_j_bits if a_j_bits_len == 1 else a_j_bits[int(a_j_bits_len - (a_j_bits_len/2)):]
+                            # print(a_i_bits_half + ' + ' + a_j_bits_half)
+                            args_pop_crossovered[k, i] = int(a_i_bits_half + a_j_bits_half, 2)/100
                         else:
                             p_i_bits = np.binary_repr(int(args_pop_selected[k, i]))
                             p_j_bits = np.binary_repr(int(args_pop_selected[k, j]))
-                            args_pop_crossovered[k, i] = int(p_i_bits[:len(p_i_bits)-1] + p_j_bits[len(p_j_bits)-1:], 2)
+                            p_i_bits_len = len(p_i_bits)
+                            p_i_bits_half = p_i_bits if p_i_bits_len == 1 else p_i_bits[:int(p_i_bits_len/2)]
+                            p_j_bits_len = len(p_j_bits)
+                            p_j_bits_half = p_j_bits if p_j_bits_len == 1 else p_j_bits[int(p_j_bits_len - (p_j_bits_len/2)):]
+                            # print(p_i_bits_half + ' - ' + p_j_bits_half)
+                            args_pop_crossovered[k, i] = int(p_i_bits_half + p_j_bits_half, 2)
                     crossovered_pop_size += 1
                     break
                 if crossovered_pop_size >= args_pop.shape[1]:

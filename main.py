@@ -17,7 +17,7 @@ def main():
     plt.plot(positive_points[0], positive_points[1], 'b.')
     plt.axis([-10, 20, -10, 20])
 
-    find_polynomial(2, negative_points, positive_points)
+    find_polynomial(3, negative_points, positive_points)
 
     plt.show()
     print_title('Genetic Algorithms end')
@@ -50,10 +50,10 @@ def generate_and_save_points():
 
 
 def find_polynomial(degree, negative_points, positive_points):
-    param_pop_size = 1000  # 2000
-    param_crossover_probability = 0.4  # 0.4
-    param_mutation_probability = 0.12  # 0.02
-    param_generation_number = 10  # 20
+    param_pop_size = 2000  # 2000
+    param_crossover_probability = 0.3  # 0.4
+    param_mutation_probability = 0.10  # 0.02
+    param_generation_number = 20  # 20
 
     polynomials = {
         2: init_polynomial_pop_degree_two(param_pop_size),
