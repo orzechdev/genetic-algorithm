@@ -17,7 +17,10 @@ def main():
     plt.plot(positive_points[0], positive_points[1], 'b.')
     plt.axis([-10, 20, -10, 20])
 
+    find_polynomial(2, negative_points, positive_points)
     find_polynomial(3, negative_points, positive_points)
+    find_polynomial(4, negative_points, positive_points)
+    find_polynomial(5, negative_points, positive_points)
 
     plt.show()
     print_title('Genetic Algorithms end')
@@ -50,6 +53,8 @@ def generate_and_save_points():
 
 
 def find_polynomial(degree, negative_points, positive_points):
+    print_title('Negative and positive points')
+
     param_pop_size = 2000  # 2000
     param_crossover_probability = 0.3  # 0.4
     param_mutation_probability = 0.10  # 0.02
@@ -64,6 +69,8 @@ def find_polynomial(degree, negative_points, positive_points):
 
     initial_pop = polynomials.get(degree, lambda: 'Invalid Polynomial Degree')
 
+    print_title('Finding polynomial of degree %d started' % degree)
+
     start(
         negative_points,
         positive_points,
@@ -73,6 +80,8 @@ def find_polynomial(degree, negative_points, positive_points):
         param_mutation_probability,
         param_generation_number
     )
+
+    print_title('Finding polynomial of degree %d finished' % degree)
 
 
 def get_negative_points():
@@ -117,10 +126,10 @@ def init_polynomial_pop_degree_five(args_pop_size):
     b_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
     c_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
     d_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
-    e_params = np.random.randint(low=-20, high=20, size=args_pop_size)
-    f_params = np.random.randint(low=-200, high=200, size=args_pop_size)
+    e_params = np.random.randint(low=-40, high=40, size=args_pop_size)
+    f_params = np.random.randint(low=-400, high=400, size=args_pop_size)
     # return np.random.randint(low=1, high=10, size=(2, args_pop_size))
-    return np.concatenate(([a_params], [b_params], [c_params], [d_params], [e_params]))
+    return np.concatenate(([a_params], [b_params], [c_params], [d_params], [e_params], [f_params]))
 
 
 def y_polynomial(x, *argv):
