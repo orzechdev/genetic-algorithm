@@ -81,7 +81,7 @@ def find_polynomial(degree, negative_points, positive_points):
     #     param_generation_number
     # )
 
-    initial_pop = init_polynomial_pop_degree_four(100)
+    initial_pop = init_polynomial_pop_degree_two(100)
     start(negative_points, positive_points, y_polynomial, initial_pop, 0.41, 0.22, 10)
     # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.02, 5)
     # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.02, 5)

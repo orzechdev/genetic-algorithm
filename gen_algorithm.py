@@ -34,6 +34,8 @@ def start(negative_points, positive_points, y_polynomial, initial_pop, param_cro
     np.set_printoptions(suppress=True)
     plt.plot(x, y, '-b', label=str(np.around(args, decimals=3)[::-1]).strip('[]'))
     plt.legend()
+    plt.title('Polynomial of ' + str(len(args) - 1) + ' degree', loc='left')
+    plt.title(str(best_value) + '% fit', loc='right')
 
     print('\n')
     print(args_pop_selected)
