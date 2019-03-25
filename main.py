@@ -81,8 +81,8 @@ def find_polynomial(degree, negative_points, positive_points):
     #     param_generation_number
     # )
 
-    initial_pop = init_polynomial_pop_degree_three(100)
-    start(negative_points, positive_points, y_polynomial, initial_pop, 0.41, 0.12, 10)
+    initial_pop = init_polynomial_pop_degree_four(100)
+    start(negative_points, positive_points, y_polynomial, initial_pop, 0.41, 0.22, 10)
     # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.02, 5)
     # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.02, 5)
     # start(negative_points, positive_points, y_polynomial, initial_pop, 0.8, 0.02, 5)
@@ -114,7 +114,7 @@ def get_positive_points():
 
 
 def init_polynomial_pop_degree_two(args_pop_size):
-    a_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
+    a_params = np.random.uniform(low=0.001, high=1, size=args_pop_size)
     b_params = np.random.randint(low=-20, high=20, size=args_pop_size)
     c_params = np.random.randint(low=-200, high=200, size=args_pop_size)
     # return np.random.randint(low=1, high=10, size=(2, args_pop_size))
@@ -122,8 +122,8 @@ def init_polynomial_pop_degree_two(args_pop_size):
 
 
 def init_polynomial_pop_degree_three(args_pop_size):
-    a_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
-    b_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
+    a_params = np.random.uniform(low=0.001, high=1, size=args_pop_size)
+    b_params = np.concatenate((np.random.uniform(low=-1, high=-0.001, size=int(args_pop_size/2)), np.random.uniform(low=0.001, high=1, size=int(args_pop_size/2))))
     c_params = np.random.randint(low=-20, high=20, size=args_pop_size)
     d_params = np.random.randint(low=-200, high=200, size=args_pop_size)
     # return np.random.randint(low=1, high=10, size=(2, args_pop_size))
@@ -131,9 +131,9 @@ def init_polynomial_pop_degree_three(args_pop_size):
 
 
 def init_polynomial_pop_degree_four(args_pop_size):
-    a_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
-    b_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
-    c_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
+    a_params = np.random.uniform(low=0.001, high=1, size=args_pop_size)
+    b_params = np.concatenate((np.random.uniform(low=-1, high=-0.001, size=int(args_pop_size/2)), np.random.uniform(low=0.001, high=1, size=int(args_pop_size/2))))
+    c_params = np.concatenate((np.random.uniform(low=-1, high=-0.001, size=int(args_pop_size/2)), np.random.uniform(low=0.001, high=1, size=int(args_pop_size/2))))
     d_params = np.random.randint(low=-20, high=20, size=args_pop_size)
     e_params = np.random.randint(low=-200, high=200, size=args_pop_size)
     # return np.random.randint(low=1, high=10, size=(2, args_pop_size))
@@ -141,12 +141,12 @@ def init_polynomial_pop_degree_four(args_pop_size):
 
 
 def init_polynomial_pop_degree_five(args_pop_size):
-    a_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
-    b_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
-    c_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
-    d_params = np.random.uniform(low=0.01, high=1, size=args_pop_size)
-    e_params = np.random.randint(low=-40, high=40, size=args_pop_size)
-    f_params = np.random.randint(low=-400, high=400, size=args_pop_size)
+    a_params = np.random.uniform(low=0.001, high=1, size=args_pop_size)
+    b_params = np.concatenate((np.random.uniform(low=-1, high=-0.001, size=int(args_pop_size/2)), np.random.uniform(low=0.001, high=1, size=int(args_pop_size/2))))
+    c_params = np.concatenate((np.random.uniform(low=-1, high=-0.001, size=int(args_pop_size/2)), np.random.uniform(low=0.001, high=1, size=int(args_pop_size/2))))
+    d_params = np.concatenate((np.random.uniform(low=-1, high=-0.001, size=int(args_pop_size/2)), np.random.uniform(low=0.001, high=1, size=int(args_pop_size/2))))
+    e_params = np.random.randint(low=-80, high=80, size=args_pop_size)
+    f_params = np.random.randint(low=-800, high=800, size=args_pop_size)
     # return np.random.randint(low=1, high=10, size=(2, args_pop_size))
     return np.concatenate(([a_params], [b_params], [c_params], [d_params], [e_params], [f_params]))
 
