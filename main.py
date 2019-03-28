@@ -3,6 +3,7 @@ import pickle
 import matplotlib.pyplot as plt
 from gen_algorithm import start
 from utils import print_title
+import time
 
 
 def main():
@@ -17,10 +18,10 @@ def main():
     plt.plot(positive_points[0], positive_points[1], 'b.')
     plt.axis([-10, 20, -10, 20])
 
-    find_polynomial(2, negative_points, positive_points)
+    # find_polynomial(2, negative_points, positive_points)
     # find_polynomial(3, negative_points, positive_points)
     # find_polynomial(4, negative_points, positive_points)
-    # find_polynomial(5, negative_points, positive_points)
+    find_polynomial(5, negative_points, positive_points)
 
     plt.show()
     print_title('Genetic Algorithms end')
@@ -55,9 +56,9 @@ def generate_and_save_points():
 def find_polynomial(degree, negative_points, positive_points):
     print_title('Negative and positive points')
 
-    param_pop_size = 2000  # 2000
-    param_crossover_probability = 0.3  # 0.4
-    param_mutation_probability = 0.10  # 0.02
+    param_pop_size = 100  # 2000
+    param_crossover_probability = 0.60  # 0.4
+    param_mutation_probability = 0.60  # 0.02
     param_generation_number = 20  # 20
 
     polynomials = {
@@ -71,18 +72,153 @@ def find_polynomial(degree, negative_points, positive_points):
 
     print_title('Finding polynomial of degree %d started' % degree)
 
-    # start(
-    #     negative_points,
-    #     positive_points,
-    #     y_polynomial,
-    #     initial_pop,
-    #     param_crossover_probability,
-    #     param_mutation_probability,
-    #     param_generation_number
-    # )
+    start(
+        negative_points,
+        positive_points,
+        y_polynomial,
+        initial_pop,
+        param_crossover_probability,
+        param_mutation_probability,
+        param_generation_number
+    )
 
-    initial_pop = init_polynomial_pop_degree_two(100)
-    start(negative_points, positive_points, y_polynomial, initial_pop, 0.41, 0.22, 10)
+
+    # fitness_values_arr = np.zeros((11, 10), dtype=np.float16)
+    # algorithm_times_arr = np.zeros(11, dtype=np.float16)
+
+
+    # DEGREE 2
+
+    # MUTATION CHANGE
+    # initial_pop = init_polynomial_pop_degree_two(40)
+    # for i in np.arange(0.0, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     fitness_values_arr[((i*10)).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, 0.40, i, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)).astype(int)] = end_time - start_time
+
+    # CROSSOVER CHANGE
+    # initial_pop = init_polynomial_pop_degree_two(40)
+    # for i in np.arange(0.1, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     fitness_values_arr[((i*10)-1).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, i, 0.40, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)-1).astype(int)] = end_time - start_time
+
+    # POPULATION CHANGE
+    # for i in np.arange(0.1, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     initial_pop = init_polynomial_pop_degree_two((i*100).astype(int))
+    #     fitness_values_arr[((i*10)-1).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, 0.40, 0.40, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)-1).astype(int)] = end_time - start_time
+
+
+    # DEGREE 3
+
+    # MUTATION CHANGE
+    # initial_pop = init_polynomial_pop_degree_three(40)
+    # for i in np.arange(0.0, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     fitness_values_arr[((i*10)).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, 0.40, i, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)).astype(int)] = end_time - start_time
+
+    # CROSSOVER CHANGE
+    # initial_pop = init_polynomial_pop_degree_three(40)
+    # for i in np.arange(0.1, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     fitness_values_arr[((i*10)-1).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, i, 0.40, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)-1).astype(int)] = end_time - start_time
+
+    # POPULATION CHANGE
+    # for i in np.arange(0.1, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     initial_pop = init_polynomial_pop_degree_three((i*100).astype(int))
+    #     fitness_values_arr[((i*10)-1).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, 0.40, 0.40, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)-1).astype(int)] = end_time - start_time
+
+
+    # DEGREE 4
+
+    # MUTATION CHANGE
+    # initial_pop = init_polynomial_pop_degree_four(40)
+    # for i in np.arange(0.0, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     fitness_values_arr[((i*10)).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, 0.40, i, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)).astype(int)] = end_time - start_time
+
+    # CROSSOVER CHANGE
+    # initial_pop = init_polynomial_pop_degree_four(40)
+    # for i in np.arange(0.1, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     fitness_values_arr[((i*10)-1).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, i, 0.40, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)-1).astype(int)] = end_time - start_time
+
+    # POPULATION CHANGE
+    # for i in np.arange(0.1, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     initial_pop = init_polynomial_pop_degree_four((i*100).astype(int))
+    #     fitness_values_arr[((i*10)-1).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, 0.40, 0.40, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)-1).astype(int)] = end_time - start_time
+
+
+    # DEGREE 5
+
+    # MUTATION CHANGE
+    # initial_pop = init_polynomial_pop_degree_five(40)
+    # for i in np.arange(0.0, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     fitness_values_arr[((i*10)).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, 0.40, i, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)).astype(int)] = end_time - start_time
+
+    # CROSSOVER CHANGE
+    # initial_pop = init_polynomial_pop_degree_five(40)
+    # for i in np.arange(0.1, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     fitness_values_arr[((i*10)-1).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, i, 0.40, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)-1).astype(int)] = end_time - start_time
+
+    # POPULATION CHANGE
+    # for i in np.arange(0.1, 1.1, 0.1):
+    #     print_title('TEST VALUE: %f' % i)
+    #     start_time = time.time()
+    #     initial_pop = init_polynomial_pop_degree_five((i*100).astype(int))
+    #     fitness_values_arr[((i*10)-1).astype(int)] = start(negative_points, positive_points, y_polynomial, initial_pop, 0.40, 0.40, 10)
+    #     end_time = time.time()
+    #     algorithm_times_arr[((i*10)-1).astype(int)] = end_time - start_time
+
+
+    # print_title('PRINT RESULTS TEST')
+    # for i in range(0, fitness_values_arr.shape[0]):
+    #     print('%.2f' % fitness_values_arr[i, 0].astype(float), end='')
+    #     for j in range(1, fitness_values_arr.shape[1]):
+    #         print('\t%.2f' % fitness_values_arr[i, j].astype(float), end='')
+    #     print('')
+    #
+    # print_title('PRINT TIMES TEST')
+    # print(algorithm_times_arr)
+
+
+    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.1, 0.02, 5)
     # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.02, 5)
     # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.02, 5)
     # start(negative_points, positive_points, y_polynomial, initial_pop, 0.8, 0.02, 5)

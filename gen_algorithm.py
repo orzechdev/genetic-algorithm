@@ -17,7 +17,10 @@ def start(negative_points, positive_points, y_polynomial, initial_pop, param_cro
     print_title('GA: selection, sort population by fitness values')
     args_pop_selected, best_value, worst_value, mean_value = selection_sort(args_pop_all, args_pop_fitness_values, pop_size)
 
+    resulting_fitness_values = np.zeros((1, param_generation_number), dtype=np.float16)
+
     print(args_pop_selected)
+    resulting_fitness_values[0] = best_value
     print('%.2f\t%.2f\t%.2f' % (best_value.astype(float), mean_value.astype(float), worst_value.astype(float)), end='\n')
 
     for i in range(param_generation_number - 1):
@@ -26,19 +29,22 @@ def start(negative_points, positive_points, y_polynomial, initial_pop, param_cro
         args_pop_mutated = mutation(args_pop_crossovered, param_mutation_probability)
         args_pop_all, args_pop_fitness_values = evaluate(args_pop_mutated, negative_points, positive_points, y_polynomial, args_pop_selected)
         args_pop_selected, best_value, worst_value, mean_value = selection_sort(args_pop_all, args_pop_fitness_values, pop_size)
+        resulting_fitness_values[0, i+1] = best_value
         print('%.2f\t%.2f\t%.2f' % (best_value.astype(float), mean_value.astype(float), worst_value.astype(float)), end='\n')
 
     args = args_pop_selected[:, 0][::-1]
     x = np.linspace(-10, 20, 1000)
     y = y_polynomial(x, *args)
     np.set_printoptions(suppress=True)
-    plt.plot(x, y, '-b', label=str(np.around(args, decimals=3)[::-1]).strip('[]'))
-    plt.legend()
+    plt.plot(x, y, label=str(np.around(args, decimals=3)[::-1]).strip('[]'))
+    # plt.legend()
     plt.title('Polynomial of ' + str(len(args) - 1) + ' degree', loc='left')
     plt.title(str(best_value) + '% fit', loc='right')
 
     print('\n')
     print(args_pop_selected)
+
+    return resulting_fitness_values
 
 
 def evaluate(args_pop, negative_points, positive_points, y_polynomial, args_pop_selected):
