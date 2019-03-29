@@ -18,10 +18,10 @@ def main():
     plt.plot(positive_points[0], positive_points[1], 'b.')
     plt.axis([-10, 20, -10, 20])
 
-    # find_polynomial(2, negative_points, positive_points)
+    find_polynomial(2, negative_points, positive_points)
     # find_polynomial(3, negative_points, positive_points)
     # find_polynomial(4, negative_points, positive_points)
-    find_polynomial(5, negative_points, positive_points)
+    # find_polynomial(5, negative_points, positive_points)
 
     plt.show()
     print_title('Genetic Algorithms end')
@@ -56,9 +56,9 @@ def generate_and_save_points():
 def find_polynomial(degree, negative_points, positive_points):
     print_title('Negative and positive points')
 
-    param_pop_size = 100  # 2000
-    param_crossover_probability = 0.60  # 0.4
-    param_mutation_probability = 0.60  # 0.02
+    param_pop_size = 40  # 2000
+    param_crossover_probability = 0.40  # 0.4
+    param_mutation_probability = 0.40  # 0.02
     param_generation_number = 20  # 20
 
     polynomials = {
@@ -81,6 +81,9 @@ def find_polynomial(degree, negative_points, positive_points):
         param_mutation_probability,
         param_generation_number
     )
+
+
+    # COMMENTED CODE was used for testing
 
 
     # fitness_values_arr = np.zeros((11, 10), dtype=np.float16)
@@ -216,24 +219,6 @@ def find_polynomial(degree, negative_points, positive_points):
     #
     # print_title('PRINT TIMES TEST')
     # print(algorithm_times_arr)
-
-
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.1, 0.02, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.02, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.02, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.8, 0.02, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.1, 0.10, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.10, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.10, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.8, 0.10, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.1, 0.30, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.30, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.30, 100)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.8, 0.30, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.1, 0.60, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.2, 0.60, 5)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.4, 0.60, 100)
-    # start(negative_points, positive_points, y_polynomial, initial_pop, 0.8, 0.60, 5)
 
 
     print_title('Finding polynomial of degree %d finished' % degree)
