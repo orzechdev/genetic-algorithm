@@ -9,6 +9,11 @@
   * [3rd degree polynomial](#3rd-degree-polynomial)
   * [4th degree polynomial](#4th-degree-polynomial)
   * [5th degree polynomial](#5th-degree-polynomial)
+* [Test the influence of mutation, crossover and population size with respect to generation number](#test-the-influence-of-mutation-crossover-and-population-size-with-respect-to-generation-number)
+  * [2nd degree polynomial test](#2nd-degree-polynomial-test)
+  * [3rd degree polynomial test](#3rd-degree-polynomial-test)
+  * [4th degree polynomial test](#4th-degree-polynomial-test)
+  * [5th degree polynomial test](#5th-degree-polynomial-test)
 	
 ## Used technologies
 * Python
@@ -58,4 +63,111 @@ In order to have possibility of obtaining better fitted curves of functions to p
 ### 5th degree polynomial
 
 ![5th degree chart](readme-files/5-degree-chart.png)
+
+## Test the influence of mutation, crossover and population size with respect to generation number
+
+### 2nd degree polynomial test
+
+Test the influence of probability of mutation
+* population size: 40
+* crossover probability: 40%
+
+Fitness values in %:
+
+![2nd degree chart test mutation](readme-files/2-degree-chart-mutation.png)
+
+Test the influence of probability of crossover
+* population size: 40
+* mutation probability: 40%
+
+Fitness values in %:
+
+![2nd degree chart test crossover](readme-files/2-degree-chart-crossover.png)
+
+Test the influence of population size
+* crossover probability: 40%
+* mutation probability: 40%
+
+Fitness values in %:
+
+![2nd degree chart test population](readme-files/2-degree-chart-population.png)
+
+### 3rd degree polynomial test
+
+Test the influence of probability of mutation
+* population size: 40
+* crossover probability: 40%
+
+Fitness values in %:
+
+![3nd degree chart test mutation](readme-files/3-degree-chart-mutation.png)
+
+Test the influence of probability of crossover
+* population size: 40
+* mutation probability: 40%
+
+Fitness values in %:
+
+![3nd degree chart test crossover](readme-files/3-degree-chart-crossover.png)
+
+Test the influence of population size
+* crossover probability: 40%
+* mutation probability: 40%
+
+Fitness values in %:
+
+![3nd degree chart test population](readme-files/3-degree-chart-population.png)
+
+### 4th degree polynomial test
+
+Test the influence of probability of mutation
+* population size: 40
+* crossover probability: 40%
+
+Fitness values in %:
+
+![4th degree chart test mutation](readme-files/4-degree-chart-mutation.png)
+
+Test the influence of probability of crossover
+* population size: 40
+* mutation probability: 40%
+
+Fitness values in %:
+
+![4th degree chart test crossover](readme-files/4-degree-chart-crossover.png)
+
+Test the influence of population size
+* crossover probability: 40%
+* mutation probability: 40%
+
+Fitness values in %:
+
+![4th degree chart test population](readme-files/4-degree-chart-population.png)
+
+### 5th degree polynomial test
+
+Test the influence of probability of mutation
+* population size: 40
+* crossover probability: 40%
+
+Fitness values in %:
+
+![5th degree chart test mutation](readme-files/5-degree-chart-mutation.png)
+
+Test the influence of probability of crossover
+* population size: 40
+* mutation probability: 40%
+
+Fitness values in %:
+
+![5th degree chart test crossover](readme-files/5-degree-chart-crossover.png)
+
+Test the influence of population size
+* crossover probability: 40%
+* mutation probability: 40%
+
+Fitness values in %:
+
+![5th degree chart test population](readme-files/5-degree-chart-population.png)
+
 
