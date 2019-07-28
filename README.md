@@ -1,6 +1,5 @@
 # Finding the best coefficient values of polynomial with the use of Genetic Algorithm
 
-## Table of contents
 * [Used technologies](#used-technologies)
 * [Problem description](#problem-description)
 * [How the algorithm works](#how-the-algorithm-works)
